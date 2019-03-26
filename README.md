@@ -1,6 +1,39 @@
-# menu
-The menu module for the Open Table FEC.
+# Project Name
 
-## Features
-The user can choose from different menus in each restaurant (e.g. breakfast, lunch, dinner). There is a default choice.
-The menu chosen  displays on screen with two columns. Each column has an item, description, and price. The menu is sorted by item type. There is an option at the bottom to collapse or expand.
+> Project description
+
+## Related Projects
+
+  - https://github.com/teamName/repo
+  - https://github.com/teamName/repo
+  - https://github.com/teamName/repo
+  - https://github.com/teamName/repo
+
+## Table of Contents
+
+1. [Usage](#Usage)
+1. [Requirements](#requirements)
+1. [Development](#development)
+
+## Usage
+
+> Some usage instructions
+
+## Requirements
+
+An `nvmrc` file is included if using [nvm](https://github.com/creationix/nvm).
+
+- Node 6.13.0
+- etc
+
+## Development
+
+### Installing Dependencies
+
+From within the root directory:
+
+```sh
+npm install -g webpack
+npm install
+```
+
