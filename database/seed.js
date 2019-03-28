@@ -6,7 +6,7 @@ const sampleItems = [];
 
 
 class Item {
-  constructor(restaurantId, meals, types) {
+  constructor(restaurantId, menus, types) {
     this.item = [faker.commerce.productMaterial(), faker.commerce.product()].join(' ');
     const descriptorsCount = Math.floor(Math.random() * Math.floor(3));
     const descriptors = [];
@@ -23,7 +23,7 @@ class Item {
       }
     }
     this.description = descriptors.join(' ');
-    this.meal = meals[Math.floor(Math.random() * Math.floor(meals.length))];
+    this.menu = menus[Math.floor(Math.random() * Math.floor(menus.length))];
     this.type = types[Math.floor(Math.random() * Math.floor(types.length))];
     this.price = (faker.commerce.price() / 100 + 3).toFixed(2);
     this.restaurantId = restaurantId;
@@ -33,11 +33,15 @@ class Item {
 const populateItems = () => {
   // Restaurants
   for (let i = 1; i <= 100; i += 1) {
-    const mealCount = Math.floor(Math.random() * Math.floor(5)) + 2;
-    const meals = [];
-    for (let j = 0; j < mealCount; j += 1) {
-      meals.push(faker.commerce.productAdjective());
+    const menuCount = Math.floor(Math.random() * Math.floor(5)) + 2;
+    const menus = [];
+    const menuChoices = {0: 'Breakfast', 1: 'Lunch', 2: 'Dinner', 3: 'Brunch', 4: 'Weekend', 5: 'Special', 6: 'Evening', 7: 'Holiday', 8: 'Morning', 9: 'Drinks', 10: 'Beer'};
+    for (let j = 0; j <= menuCount; j += 1) {
+      const rand = Object.keys(menuChoices)[Math.floor(Math.random() * Math.floor(Object.keys(menuChoices).length))];
+      menus.push(menuChoices[rand]);
+      delete menuChoices[rand];
     }
+
     const typeCount = Math.floor(Math.random() * Math.floor(3)) + 1;
     const types = [];
     for (let j = 0; j < typeCount; j += 1) {
@@ -47,13 +51,12 @@ const populateItems = () => {
     // Items
     const itemCount = Math.floor(Math.random() * Math.floor(75)) + 25;
     for (let j = 0; j < itemCount; j += 1) {
-      sampleItems.push(new Item(i, meals, types));
+      sampleItems.push(new Item(i, menus, types));
     }
   }
 }
 
 populateItems();
-
 const insertSampleItems = () => {
   MenuItem.create(sampleItems)
     .then(() => db.disconnect());
