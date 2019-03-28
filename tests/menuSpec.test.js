@@ -1,4 +1,3 @@
-const Jest = require('jest');
 // import { configure } from 'enzyme';
 // import Adapter from 'enzyme-adapter-react-16';
 // import { shallow, mount, render } from 'enzyme';

@@ -9,18 +9,26 @@
   },
   "scripts": {
     "test": "jest",
-    "react-dev": "webpack -d --watch"
+    "react-dev": "webpack -d --watch",
+    "server-dev": "nodemon server/index.js",
+    "db:setup": "node database/seed.js"
   },
-  "dependencies": {},
+  "dependencies": {
+    "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.11.2",
+    "mongoose": "^5.4.20"
+  },
   "devDependencies": {
     "@babel/core": "^7.4.0",
     "@babel/preset-env": "^7.4.2",
     "@babel/preset-react": "^7.0.0",
+    "babel-jest": "^24.5.0",
     "babel-loader": "^8.0.5",
-    "enzyme": "^3.9.0",
-    "enzyme-adapter-react-16": "^1.11.2",
     "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor",
+    "faker": "^4.1.0",
     "jest": "^24.5.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
     "webpack": "^4.29.6",
     "webpack-cli": "^3.3.0"
   }
