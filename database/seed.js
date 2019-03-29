@@ -57,8 +57,9 @@ const populateItems = () => {
 }
 
 populateItems();
+
 const insertSampleItems = () => {
-  MenuItem.create(sampleItems)
+  MenuItem.model.create(sampleItems)
     .then(() => db.disconnect());
 };
 
