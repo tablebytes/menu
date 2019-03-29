@@ -1,5 +1,5 @@
 const express = require('express');
-const bodyParser = require('body-Parser');
+const bodyParser = require('body-parser');
 const MenuItem = require('../database/MenuItem');
 const path = require('path');
 
