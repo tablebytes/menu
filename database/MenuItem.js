@@ -14,4 +14,10 @@ const menuItemSchema = new mongoose.Schema({
 
 const MenuItem = mongoose.model('MenuItem', menuItemSchema);
 
-module.exports = MenuItem;
+const getMenus = rId => MenuItem.find({ restaurantId: rId }).distinct('menu');
+
+const getMenu = (rId, menu) => MenuItem.find({ restaurantId: rId, menu });
+
+exports.model = MenuItem;
+exports.getMenus = getMenus;
+exports.getMenu = getMenu;
