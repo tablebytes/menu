@@ -4,9 +4,9 @@ import { shallow } from 'enzyme';
 // Components
 import App from '../client/src/components/App.jsx';
 
-describe('WelcomeMessage Test Suite', () => {
+describe('React Test Suite', () => {
   const wrapper = shallow(<App />);
-  test('it exists', () => {
+  test('it displays the correct message on screen', () => {
     expect(wrapper.text()).toEqual('Hello World!');
   })
 });

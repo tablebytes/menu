@@ -17,7 +17,8 @@
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.11.2",
     "express": "^4.16.4",
-    "mongoose": "^5.4.20"
+    "mongoose": "^5.4.20",
+    "radium": "^0.25.1"
   },
   "devDependencies": {
     "@babel/core": "^7.4.0",
