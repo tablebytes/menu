@@ -49,7 +49,7 @@ const populateItems = () => {
     }
 
     // Items
-    const itemCount = Math.floor(Math.random() * Math.floor(75)) + 25;
+    const itemCount = Math.floor(Math.random() * Math.floor(300)) + 150;
     for (let j = 0; j < itemCount; j += 1) {
       sampleItems.push(new Item(i, menus, types));
     }
