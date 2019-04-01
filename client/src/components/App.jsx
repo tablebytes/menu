@@ -1,6 +1,7 @@
 import React from 'react';
 import SearchBar from './SearchBar.jsx';
 import MenuButtonContainer from './MenuButtonContainer.jsx';
+import MenuContainer from './MenuContainer.jsx';
 
 class App extends React.Component {
   constructor() {
@@ -9,6 +10,7 @@ class App extends React.Component {
       menus: [],
       menuItems: [{}],
       restaurantId: 1,
+      currentMenu: 0,
     }
   }
 
@@ -72,6 +74,7 @@ class App extends React.Component {
         <SearchBar updateSearchText={this.search.bind(this)}/>
         <h2 style={styles.base}>Menu</h2>
         <MenuButtonContainer menus={this.state.menus} clickMenu={this.getMenuItems.bind(this)}/>
+        <MenuContainer items={this.state.menuItems}/>
       </div>
     );
   }
