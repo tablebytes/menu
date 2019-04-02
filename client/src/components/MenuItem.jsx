@@ -47,6 +47,9 @@ const MenuItem = ({item}) => {
       foundDecimal = true;
     }
   }
+  if (!foundDecimal) {
+    price = price + '.';
+  }
   for (let j = trailingZerosNeeded; j > 0; j--) {
     price = price + '0';
   }
