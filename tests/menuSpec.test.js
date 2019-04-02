@@ -3,8 +3,6 @@ const MenuItem = require('../database/MenuItem');
 const server = require('../server/index');
 const dbServer = require('../database/index');
 
-import 'babel-polyfill';
-
 describe('', function() {
   
   describe('Database Schema Test Suite', () => {
@@ -49,9 +47,12 @@ describe('', function() {
     })
   });
 
-  afterAll(async () => {
+  afterAll((done) => {
     // Closing the DB connection allows Jest to exit successfully.
-    await dbServer.close();
-    await server.server.close();
+    dbServer.close()
+      .then(() => {
+        server.server.close();
+      })
+      .then(() => done());
   });
 });
