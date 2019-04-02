@@ -11,6 +11,7 @@ class App extends React.Component {
       menuItems: [{}],
       restaurantId: 1,
       currentMenu: 0,
+      restaurantLoaded: false,
     }
   }
 
@@ -25,6 +26,7 @@ class App extends React.Component {
     })
     .then(menus => {
       this.setState({
+        restaurantLoaded: true,
         menus: menus
       });
       this.getMenuItems(menus[0]);
@@ -73,8 +75,8 @@ class App extends React.Component {
       <div>
         <SearchBar updateSearchText={this.search.bind(this)}/>
         <h2 style={styles.base}>Menu</h2>
-        <MenuButtonContainer menus={this.state.menus} clickMenu={this.getMenuItems.bind(this)}/>
-        <MenuContainer items={this.state.menuItems}/>
+        {this.state.restaurantLoaded && (<MenuButtonContainer menus={this.state.menus} clickMenu={this.getMenuItems.bind(this)}/>)}
+        {this.state.restaurantLoaded && (<MenuContainer items={this.state.menuItems}/>)}
       </div>
     );
   }

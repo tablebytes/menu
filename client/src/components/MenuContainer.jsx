@@ -14,8 +14,15 @@ const MenuContainer = ({items}) => {
     return <MenuTypeContainer items={itemObject[type]} itemsType={type} />
   });
 
+  const styles = {
+    paddingTop: '16px',
+    paddingBottom: '32px',
+    borderBottom: '1px solid #d8d9db',
+    display: 'block',
+  }
+
   return (
-    <div>{menuTypeContainers}</div>
+    <div style={styles}>{menuTypeContainers}</div>
   );
 }
 
