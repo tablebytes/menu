@@ -46,4 +46,6 @@ describe('', function() {
     })
   });
 
+  server.server.close();
+
 });
