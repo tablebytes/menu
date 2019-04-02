@@ -24,7 +24,7 @@ class Item {
     }
     this.description = descriptors.join(' ');
     this.menu = menus[Math.floor(Math.random() * Math.floor(menus.length))];
-    this.type = types[Math.floor(Math.random() * Math.floor(types.length))];
+    this.type = types[this.menu][Math.floor(Math.random() * Math.floor(types[this.menu].length))];
     this.price = (faker.commerce.price() / 100 + 3).toFixed(2);
     this.restaurantId = restaurantId;
   }
@@ -35,23 +35,27 @@ const populateItems = () => {
   for (let i = 1; i <= 100; i += 1) {
     const menuCount = Math.floor(Math.random() * Math.floor(5)) + 2;
     const menus = [];
-    const menuChoices = {0: 'Breakfast', 1: 'Lunch', 2: 'Dinner', 3: 'Brunch', 4: 'Weekend', 5: 'Special', 6: 'Evening', 7: 'Holiday', 8: 'Morning', 9: 'Drinks', 10: 'Beer'};
+    const menuChoices = {0: 'Breakfast', 1: 'Lunch', 2: 'Dinner', 3: 'Brunch', 4: 'Weekend', 5: 'Special', 6: 'Kids', 7: 'Holiday', 8: 'Wine', 9: 'Drinks', 10: 'Beer'};
+    let menuTypes = {};
     for (let j = 0; j <= menuCount; j += 1) {
       const rand = Object.keys(menuChoices)[Math.floor(Math.random() * Math.floor(Object.keys(menuChoices).length))];
       menus.push(menuChoices[rand]);
+      
+      const typeCount = Math.floor(Math.random() * Math.floor(3)) + 1;
+      const types = [];
+      const typeChoices = {0: 'Appetizers', 1: 'Snacks', 2: 'Entrees', 3: 'Tapas', 4: 'Dessert', 5: 'Sides', 6: 'Main', 7: 'Special'};
+      for (let j = 0; j <= typeCount; j += 1) {
+        const rand = Object.keys(typeChoices)[Math.floor(Math.random() * Math.floor(Object.keys(typeChoices).length))];
+        types.push(typeChoices[rand]);
+        delete typeChoices[rand];
+      }
+      menuTypes[menuChoices[rand]] = types;
       delete menuChoices[rand];
     }
-
-    const typeCount = Math.floor(Math.random() * Math.floor(3)) + 1;
-    const types = [];
-    for (let j = 0; j < typeCount; j += 1) {
-      types.push(faker.commerce.productMaterial());
-    }
-
     // Items
-    const itemCount = Math.floor(Math.random() * Math.floor(300)) + 150;
+    const itemCount = Math.floor(Math.random() * Math.floor(200)) + 100;
     for (let j = 0; j < itemCount; j += 1) {
-      sampleItems.push(new Item(i, menus, types));
+      sampleItems.push(new Item(i, menus, menuTypes));
     }
   }
 }
