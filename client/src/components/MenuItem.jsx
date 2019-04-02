@@ -10,9 +10,10 @@ const MenuItem = ({item}) => {
       fontWeight: 600,
       marginTop: 0,
       marginBottom: '16px',
+      // overflow: 'hidden',
       // webkitColumnBreakInside: avoid;
-      // page-break-inside: avoid;
-      // break-inside: avoid;
+      pageBreakInside: 'avoid',
+      breakInside: 'avoid',
     },
     p: {
       fontFamily: 'Lato,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol',
