@@ -9,19 +9,25 @@ class MenuContainer extends React.Component {
     this.state = {
       expanded: false,
       mouseOver: false,
+      showGradient: true,
     }
   }
 
   clickExpandButton() {
     const newExpanded = !this.state.expanded;
+    const newShowGradient = !this.state.showGradient;
     const switchExpandState = this.switchExpandState.bind(this, newExpanded);
-    if (!newExpanded) {
-      $(document).ready(function () {
-        $('html, body').animate({scrollTop: $('#menu').offset().top}, 'slow', switchExpandState);
-      });
-    } else {
-      switchExpandState();
-    }
+    this.setState({
+      showGradient: newShowGradient,
+    }, () => {
+      if (!newExpanded) {
+        $(document).ready(function () {
+          $('html, body').animate({scrollTop: $('#menu').offset().top}, 'slow', switchExpandState);
+        });
+      } else {
+        switchExpandState();
+      }
+    });
   }
 
   switchExpandState(newExpanded) {
@@ -63,7 +69,7 @@ class MenuContainer extends React.Component {
         position:'absolute',
         bottom: '0px',
         backgroundImage: '-webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0)), to(rgba(255, 255, 255, 1)), color-stop(0.7,#fff))',
-        display: this.state.expanded ? 'none' : 'block',
+        display: this.state.showGradient ? 'block' : 'none',
       },
       button: {
         fontFamily: 'Brandon, Lato,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol',
