@@ -4,21 +4,22 @@ const MenuItem = ({item}) => {
 
   const styles = {
     container: {
-      fontFamily: 'Lato,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol',
+      fontFamily: 'Brandon, Lato,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol',
       fontSize: '14px',
       lineHeight: '20px',
-      fontWeight: 600,
+      fontWeight: 400,
       marginTop: 0,
       marginBottom: '16px',
+      // overflow: 'hidden',
       // webkitColumnBreakInside: avoid;
-      // page-break-inside: avoid;
-      // break-inside: avoid;
+      pageBreakInside: 'avoid',
+      breakInside: 'avoid',
     },
     p: {
-      fontFamily: 'Lato,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol',
+      fontFamily: 'Brandon, Lato,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol',
       marginTop: '8px',
       marginBottom: 0,
-      fontWeight: 400,
+      fontWeight: 300,
       display: 'block',
       marginBlockStart: '1em',
       marginBlockEnd: '1em',
@@ -28,7 +29,7 @@ const MenuItem = ({item}) => {
       lineHeight: '20px',
     },
     price: {
-      fontFamily: 'Lato,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol',
+      fontFamily: 'Brandon, Lato,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol',
       float: 'right',
       fontSize: '14px',
       lineHeight: '20px',

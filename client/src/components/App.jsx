@@ -39,8 +39,10 @@ class App extends React.Component {
       return response.json();
     })
     .then(items => {
+      const menuIndex = this.state.menus.indexOf(menu);
       this.setState({
-        menuItems: items
+        menuItems: items,
+        currentMenu: menuIndex,
       });
     }).catch(err => console.log(err));
   }
@@ -59,14 +61,14 @@ class App extends React.Component {
   render() {
     const styles = {
       base: {
-        fontFamily: 'Lato,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol',
+        fontFamily: 'Brandon-Bold, Lato,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol',
         fontSize: '24px',
-        fontWeight: '700',
+        fontWeight: '500',
         lineHeight: '32px',
         color: '#2d333f',
         borderBottom: '1px solid #d8d9db',
         paddingBottom: '16px',
-        margin: '0 0 16px 0',
+        margin: '0 0 0 0',
         display: 'flex',
         justifyContent: 'space-between'
       }
@@ -75,7 +77,7 @@ class App extends React.Component {
       <div>
         <SearchBar updateSearchText={this.search.bind(this)}/>
         <h2 style={styles.base}>Menu</h2>
-        {this.state.restaurantLoaded && (<MenuButtonContainer menus={this.state.menus} clickMenu={this.getMenuItems.bind(this)}/>)}
+        {this.state.restaurantLoaded && (<MenuButtonContainer menus={this.state.menus} clickMenu={this.getMenuItems.bind(this)} currentMenu={this.state.menus[this.state.currentMenu]}/>)}
         {this.state.restaurantLoaded && (<MenuContainer items={this.state.menuItems}/>)}
       </div>
     );

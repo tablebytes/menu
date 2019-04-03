@@ -1,6 +1,7 @@
 const request = require('supertest');
 const MenuItem = require('../database/MenuItem');
 const server = require('../server/index');
+const dbServer = require('../database/index');
 
 describe('', function() {
   
@@ -46,4 +47,12 @@ describe('', function() {
     })
   });
 
+  afterAll((done) => {
+    // Closing the DB connection allows Jest to exit successfully.
+    dbServer.close()
+      .then(() => {
+        server.server.close();
+      })
+      .then(() => done());
+  });
 });
