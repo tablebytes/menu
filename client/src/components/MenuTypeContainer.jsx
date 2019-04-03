@@ -1,7 +1,7 @@
 import React from 'react';
 import MenuItem from './MenuItem.jsx';
 
-const MenuTypeContainer = ({itemsType, items}) => {
+const MenuTypeContainer = ({itemsType, items, lastType}) => {
   const menuItems = items.map(item => {
     return <MenuItem item={item}/>;
   });
@@ -32,7 +32,7 @@ const MenuTypeContainer = ({itemsType, items}) => {
     },
     mainContainer: {
       fontFamily: 'Lato,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol',
-      borderBottom: '1px solid #d8d9db',
+      borderBottom: lastType ? '0' : '1px solid #d8d9db',
     }
   }
 
