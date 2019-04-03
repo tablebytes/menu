@@ -1,5 +1,6 @@
 import React from 'react';
 import MenuTypeContainer from './MenuTypeContainer.jsx';
+import $ from 'jquery';
 
 class MenuContainer extends React.Component {
   constructor (props) {
@@ -13,9 +14,20 @@ class MenuContainer extends React.Component {
 
   clickExpandButton() {
     const newExpanded = !this.state.expanded;
+    const switchExpandState = this.switchExpandState.bind(this, newExpanded);
+    if (!newExpanded) {
+      $(document).ready(function () {
+        $('html, body').animate({scrollTop: $('#menu').offset().top}, 'slow', switchExpandState);
+      });
+    } else {
+      switchExpandState();
+    }
+  }
+
+  switchExpandState(newExpanded) {
     this.setState({
       expanded: newExpanded,
-    })
+    });
   }
 
   mouseEnterButton() {
@@ -29,6 +41,7 @@ class MenuContainer extends React.Component {
       mouseOver: false
     });
   }
+
 
   render() {
     const styles = {
