@@ -2,6 +2,7 @@ import React from 'react';
 import SearchBar from './SearchBar.jsx';
 import MenuButtonContainer from './MenuButtonContainer.jsx';
 import MenuContainer from './MenuContainer.jsx';
+import axios from 'axios';
 
 class App extends React.Component {
   constructor() {
@@ -20,35 +21,28 @@ class App extends React.Component {
   }
   
   getMenus() {
-    fetch(`/api/restaurants/${this.state.restaurantId}/menus`)
+    axios.get(`/api/restaurants/${this.state.restaurantId}/menus`)
     .then(response => {
-      return response.json();
-    })
-    .then(menus => {
       this.setState({
         restaurantLoaded: true,
-        menus: menus
+        menus: response.data
       });
-      this.getMenuItems(menus[0]);
+      this.getMenuItems(response.data[0]);
     }).catch(err => console.log(err));
   }
 
   getMenuItems(menu) {
-    fetch(`/api/restaurants/${this.state.restaurantId}/menus/${menu}`)
+    axios.get(`/api/restaurants/${this.state.restaurantId}/menus/${menu}`)
     .then(response => {
-      return response.json();
-    })
-    .then(items => {
       const menuIndex = this.state.menus.indexOf(menu);
       this.setState({
-        menuItems: items,
+        menuItems: response.data,
         currentMenu: menuIndex,
       });
     }).catch(err => console.log(err));
   }
 
   search(e) {
-    console.log('searching: ', e.target.value);
     this.setState({
       restaurantId: e.target.value,
     }, () => {
@@ -75,10 +69,10 @@ class App extends React.Component {
     }
     return (
       <div id="menu">
-        <SearchBar updateSearchText={this.search.bind(this)}/>
+        <SearchBar key={1} updateSearchText={this.search.bind(this)}/>
         <h2 style={styles.base}>Menu</h2>
-        {this.state.restaurantLoaded && (<MenuButtonContainer menus={this.state.menus} clickMenu={this.getMenuItems.bind(this)} currentMenu={this.state.menus[this.state.currentMenu]}/>)}
-        {this.state.restaurantLoaded && (<MenuContainer items={this.state.menuItems}/>)}
+        {this.state.restaurantLoaded && (<MenuButtonContainer key={2} menus={this.state.menus} clickMenu={this.getMenuItems.bind(this)} currentMenu={this.state.menus[this.state.currentMenu]}/>)}
+        {this.state.restaurantLoaded && (<MenuContainer key={3} items={this.state.menuItems}/>)}
       </div>
     );
   }
