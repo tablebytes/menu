@@ -61,6 +61,9 @@ class MenuContainer extends React.Component {
         height: this.state.expanded ? 'auto' : '450px',
         position: 'absolute',
         marginBottom: this.state.expanded ? '50px' : 0,
+        width: '640px',
+        marginLeft: 'auto',
+        marginRight: 'auto',
       },
       gradient: {
         zIndex: 2,

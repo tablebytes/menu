@@ -7,15 +7,13 @@ const MenuItem = ({item}) => {
       fontFamily: 'Brandon, Lato,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol',
       fontSize: '14px',
       lineHeight: '20px',
-      fontWeight: 500,
+      fontWeight: 600,
       marginTop: 0,
       marginBottom: '16px',
-      // overflow: 'hidden',
-      // webkitColumnBreakInside: avoid;
       pageBreakInside: 'avoid',
       breakInside: 'avoid',
     },
-    p: {
+    description: {
       fontFamily: 'Brandon, Lato,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol',
       marginTop: '8px',
       marginBottom: 0,
@@ -60,7 +58,7 @@ const MenuItem = ({item}) => {
     <div className="itemContainer" style={styles.container}>
       <div className="itemPrice" style={styles.price}>${price}</div>
       <div className="itemName">{item.item}</div>
-      <div className="itemDescription" style={styles.p}>{item.description}</div>
+      <div className="itemDescription" style={styles.description}>{item.description}</div>
     </div>
   );
 }
