@@ -1,9 +1,11 @@
 import React from 'react';
 import MenuItem from './MenuItem.jsx';
 
-const MenuTypeContainer = ({itemsType, items}) => {
+const MenuTypeContainer = ({itemsType, items, lastType}) => {
+  let key = 0;
   const menuItems = items.map(item => {
-    return <MenuItem item={item}/>;
+    key++;
+    return <MenuItem key={key} item={item}/>;
   });
 
   const styles = {
@@ -32,14 +34,14 @@ const MenuTypeContainer = ({itemsType, items}) => {
     },
     mainContainer: {
       fontFamily: 'Lato,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol',
-      borderBottom: '1px solid #d8d9db',
+      borderBottom: lastType ? '0' : '1px solid #d8d9db',
     }
   }
 
   return (
     <div style={styles.mainContainer}>
       <div style={styles.headerDiv}>
-        <h3 style={styles.header}>{itemsType}</h3>
+        <h3 className="menuTypeHeader" style={styles.header}>{itemsType}</h3>
       </div>
       <div style={styles.container}>
         {menuItems}

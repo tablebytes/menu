@@ -7,7 +7,7 @@ const MenuItem = ({item}) => {
       fontFamily: 'Brandon, Lato,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol',
       fontSize: '14px',
       lineHeight: '20px',
-      fontWeight: 400,
+      fontWeight: 500,
       marginTop: 0,
       marginBottom: '16px',
       // overflow: 'hidden',
@@ -57,10 +57,10 @@ const MenuItem = ({item}) => {
 
 
   return (
-    <div style={styles.container}>
-      <div style={styles.price}>${price}</div>
-      <div>{item.item}</div>
-      <div style={styles.p}>{item.description}</div>
+    <div className="itemContainer" style={styles.container}>
+      <div className="itemPrice" style={styles.price}>${price}</div>
+      <div className="itemName">{item.item}</div>
+      <div className="itemDescription" style={styles.p}>{item.description}</div>
     </div>
   );
 }
