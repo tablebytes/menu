@@ -3,7 +3,7 @@ const MenuItem = require('../database/MenuItem');
 const server = require('../server/index');
 const dbServer = require('../database/index');
 
-describe('', function() {
+describe('Server Side Test Suites', function() {
   
   describe('Database Schema Test Suite', () => {
     let items;
