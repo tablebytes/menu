@@ -68,7 +68,7 @@ class App extends React.Component {
       }
     }
     return (
-      <div id="menu">
+      <div id="menu" style={{width: '640px', marginLeft: 'auto', marginRight: 'auto',}}>
         <SearchBar key={1} updateSearchText={this.search.bind(this)}/>
         <h2 style={styles.base}>Menu</h2>
         {this.state.restaurantLoaded && (<MenuButtonContainer key={2} menus={this.state.menus} clickMenu={this.getMenuItems.bind(this)} currentMenu={this.state.menus[this.state.currentMenu]}/>)}
