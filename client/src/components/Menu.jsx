@@ -4,7 +4,7 @@ import MenuButtonContainer from './MenuButtonContainer.jsx';
 import MenuContainer from './MenuContainer.jsx';
 import axios from 'axios';
 
-class App extends React.Component {
+class Menu extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -17,7 +17,11 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.getMenus();
+    const splitUrl = window.location.pathname.split('/');
+    const rId = Number.parseInt(splitUrl[splitUrl.length - 1]) ||  Number.parseInt(splitUrl[splitUrl.length - 2]);
+    this.setState({
+      restaurantId: rId
+    }, this.getMenus);
   }
   
   getMenus() {
@@ -69,7 +73,6 @@ class App extends React.Component {
     }
     return (
       <div id="menu" style={{width: '640px', marginLeft: 'auto', marginRight: 'auto',}}>
-        <SearchBar key={1} updateSearchText={this.search.bind(this)}/>
         <h2 style={styles.base}>Menu</h2>
         {this.state.restaurantLoaded && (<MenuButtonContainer key={2} menus={this.state.menus} clickMenu={this.getMenuItems.bind(this)} currentMenu={this.state.menus[this.state.currentMenu]}/>)}
         {this.state.restaurantLoaded && (<MenuContainer key={3} items={this.state.menuItems}/>)}
@@ -78,4 +81,4 @@ class App extends React.Component {
   }
 };
 
-export default App;
+export default Menu;

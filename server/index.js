@@ -19,9 +19,11 @@ app.get('/api/restaurants/:id/menus/:menu', (req, res) => {
     .then(menu => res.send(menu));
 });
 
+
 const server = app.listen(port, () => {
   console.log(`Now listening on port ${port}`);
 });
+
 
 module.exports = app;
 module.exports.server = server;

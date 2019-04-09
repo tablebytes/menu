@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './components/App.jsx';
+import Menu from './components/Menu.jsx';
 
-ReactDOM.render(<App />, document.getElementById('app'));
+// ReactDOM.render(<Menu />, document.getElementById('app'));
+window.Menu = Menu;
