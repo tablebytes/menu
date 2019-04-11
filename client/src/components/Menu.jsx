@@ -5,11 +5,11 @@ import MenuContainer from './MenuContainer.jsx';
 import axios from 'axios';
 
 class Menu extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       menus: [],
-      menuItems: [{}],
+      menuItems: [],
       restaurantId: 1,
       currentMenu: 0,
       restaurantLoaded: false,
@@ -18,7 +18,7 @@ class Menu extends React.Component {
 
   componentDidMount() {
     const splitUrl = window.location.pathname.split('/');
-    const rId = Number.parseInt(splitUrl[splitUrl.length - 1]) ||  Number.parseInt(splitUrl[splitUrl.length - 2]);
+    const rId = parseInt(splitUrl[2]);
     this.setState({
       restaurantId: rId
     }, this.getMenus);
