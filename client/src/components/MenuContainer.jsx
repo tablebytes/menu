@@ -59,7 +59,7 @@ class MenuContainer extends React.Component {
         display: 'block',
         overflow: 'hidden',
         height: this.state.expanded ? 'auto' : '450px',
-        position: 'absolute',
+        position: 'relative',
         marginBottom: this.state.expanded ? '50px' : 0,
         width: '640px',
         marginLeft: 'auto',
