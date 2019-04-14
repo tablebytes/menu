@@ -10,7 +10,9 @@
   "scripts": {
     "test": "jest",
     "react-dev": "webpack -d --watch",
+    "react": "webpack -p",
     "server-dev": "nodemon server/index.js",
+    "start": "node database/seed.js & node server/index.js",
     "db:setup": "node database/seed.js"
   },
   "dependencies": {
@@ -31,7 +33,6 @@
     "babel-jest": "^24.5.0",
     "babel-loader": "^8.0.5",
     "eslint": "^5.15.3",
-    "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor",
     "eslint-plugin-react": "^7.12.4",
     "faker": "^4.1.0",
     "jest": "^24.5.0",
