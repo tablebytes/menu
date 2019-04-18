@@ -32,8 +32,9 @@ class Item {
 
 const populateItems = () => {
   // Restaurants
-  for (let i = 1; i <= 100; i += 1) {
-    const menuCount = Math.floor(Math.random() * Math.floor(5)) + 2;
+  for (let i = 1; i <= 1000000; i += 1) {
+   // original: const menuCount = Math.floor(Math.random() * Math.floor(5)) + 2;
+    const menuCount = Math.floor(Math.random() * Math.floor(3)) + 1;
     const menus = [];
     const menuChoices = {0: 'Breakfast', 1: 'Lunch', 2: 'Dinner', 3: 'Brunch', 4: 'Weekend', 5: 'Special', 6: 'Kids', 7: 'Holiday', 8: 'Wine', 9: 'Drinks', 10: 'Beer'};
     let menuTypes = {};
@@ -41,7 +42,8 @@ const populateItems = () => {
       const rand = Object.keys(menuChoices)[Math.floor(Math.random() * Math.floor(Object.keys(menuChoices).length))];
       menus.push(menuChoices[rand]);
       
-      const typeCount = Math.floor(Math.random() * Math.floor(3)) + 1;
+      // original: const typeCount = Math.floor(Math.random() * Math.floor(3)) + 1;
+      const typeCount = Math.floor(Math.random() * Math.floor(2)) + 1;
       const types = [];
       const typeChoices = {0: 'Appetizers', 1: 'Snacks', 2: 'Entrees', 3: 'Tapas', 4: 'Dessert', 5: 'Sides', 6: 'Main', 7: 'Special'};
       for (let j = 0; j <= typeCount; j += 1) {
@@ -53,18 +55,24 @@ const populateItems = () => {
       delete menuChoices[rand];
     }
     // Items
-    const itemCount = Math.floor(Math.random() * Math.floor(200)) + 100;
+   //original: const itemCount = Math.floor(Math.random() * Math.floor(200)) + 100;
+   const itemCount = Math.floor(Math.random() * Math.floor(15)) + 5;
     for (let j = 0; j < itemCount; j += 1) {
-      sampleItems.push(new Item(i, menus, menuTypes));
+      //sampleItems.push(new Item(i, menus, menuTypes));
+      console.log(new Item(i, menus, menuTypes))
     }
   }
+  process.exit();
 }
 
 populateItems();
 
-const insertSampleItems = () => {
-  MenuItem.model.create(sampleItems)
-    .then(() => db.close());
-};
+// console.log(sampleItems.length);
+// process.exit();
 
-insertSampleItems();
+// const insertSampleItems = () => {
+//   MenuItem.model.create(sampleItems)
+//     .then(() => db.close());
+// };
+
+// insertSampleItems();
