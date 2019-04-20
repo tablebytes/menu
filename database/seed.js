@@ -2,8 +2,14 @@ const MenuItem = require('./MenuItem.js');
 const faker = require('faker');
 const db = require('./index.js');
 
-const sampleItems = [];
+const fs = require('fs');
 
+var sampleItems = [];
+
+var writeToGZ = function(writer, data) { 
+ 
+  
+}
 
 class Item {
   constructor(restaurantId, menus, types) {
@@ -32,9 +38,10 @@ class Item {
 
 const populateItems = () => {
   // Restaurants
-  for (let i = 1; i <= 1000000; i += 1) {
+  for (let i = 1; i <= 10000000; i += 1) {
    // original: const menuCount = Math.floor(Math.random() * Math.floor(5)) + 2;
-    const menuCount = Math.floor(Math.random() * Math.floor(3)) + 1;
+    //const menuCount = Math.floor(Math.random() * Math.floor(3)) + 1;
+    const menuCount = 2;
     const menus = [];
     const menuChoices = {0: 'Breakfast', 1: 'Lunch', 2: 'Dinner', 3: 'Brunch', 4: 'Weekend', 5: 'Special', 6: 'Kids', 7: 'Holiday', 8: 'Wine', 9: 'Drinks', 10: 'Beer'};
     let menuTypes = {};
@@ -43,7 +50,7 @@ const populateItems = () => {
       menus.push(menuChoices[rand]);
       
       // original: const typeCount = Math.floor(Math.random() * Math.floor(3)) + 1;
-      const typeCount = Math.floor(Math.random() * Math.floor(2)) + 1;
+      const typeCount = 2;
       const types = [];
       const typeChoices = {0: 'Appetizers', 1: 'Snacks', 2: 'Entrees', 3: 'Tapas', 4: 'Dessert', 5: 'Sides', 6: 'Main', 7: 'Special'};
       for (let j = 0; j <= typeCount; j += 1) {
@@ -56,10 +63,18 @@ const populateItems = () => {
     }
     // Items
    //original: const itemCount = Math.floor(Math.random() * Math.floor(200)) + 100;
-   const itemCount = Math.floor(Math.random() * Math.floor(15)) + 5;
+   const itemCount = 4;
     for (let j = 0; j < itemCount; j += 1) {
-      //sampleItems.push(new Item(i, menus, menuTypes));
-      console.log(new Item(i, menus, menuTypes))
+     // new Item(i, menus, menuTypes) 
+     var data = '';
+     data += Buffer.from(JSON.stringify(new Item(i, menus, menuTypes)) + ',');
+
+     if(i % 100 === 0) {
+       process.stdout.write(data);
+     }
+
+    // process.stdout.write(JSON.stringify(new Item(i, menus, menuTypes)));
+      
     }
   }
   process.exit();
@@ -67,12 +82,17 @@ const populateItems = () => {
 
 populateItems();
 
-// console.log(sampleItems.length);
-// process.exit();
 
-// const insertSampleItems = () => {
-//   MenuItem.model.create(sampleItems)
-//     .then(() => db.close());
-// };
 
-// insertSampleItems();
+
+
+//sampleItems.push(new Item(i, menus, menuTypes));
+      //console.log(new Item(i, menus, menuTypes));
+      //sampleItems.push(new Item(i, menus, menuTypes));
+      
+      // if(i % 100 === 0) {
+      //   process.stdout.write(data);
+        //sampleItems = [];
+       
+     // }
+      //process.stdout.write(JSON.stringify(new Item(i, menus, menuTypes)));
