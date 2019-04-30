@@ -1,32 +1,47 @@
+require('newrelic');
 const express = require('express');
 const bodyParser = require('body-parser');
-const MenuItem = require('../database/MenuItem');
+const pool = require('../database/postgresdb.js');
 const path = require('path');
 const cors = require('cors');
+
 
 const port = 3004;
 const app = express();
 
 app.use(cors());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json())
 
 app.use('/restaurants/:id', express.static(path.join(__dirname, '/../client/dist')));
 //read
 app.get('/api/restaurants/:id/menus', (req, res) => {
-  MenuItem.getMenus(req.params.id)
-    .then(menus => res.send(menus));
+
+  pool.getMenus(req.params.id, (err, result) => {
+    if(err) {
+      console.log(err);
+    }
+    var menuNames= [];
+    for(var i = 0; i < result.rows.length; i++) {
+      menuNames.push(result.rows[i].menu);
+    }
+    
+    res.send(menuNames);
+  });
 });
 
 app.get('/api/restaurants/:id/menus/:menu', (req, res) => {
-  MenuItem.getMenu(req.params.id, req.params.menu)
-    .then(menu => res.send(menu));
+
+  pool.getMenu(req.params.id, req.params.menu, (err, result) => {
+   if(err) {
+     console.log(err);
+   }
+   console.log('RESULT: ', result);
+   res.send(result.rows)
+ })
 });
 
 //delete
 app.delete('/api/restaurants/:id/menus/:menu', (req, res) => {
-  MenuItem.deleteMenu(req.params.id, req.params.menu)
-  .then(menu => res.send(`Deleted ${menu} \n`));
+ 
   
 });
 //update
@@ -36,7 +51,7 @@ app.put('/api/restaurants', (req, res) => {
   var query = changerObj.query;
   var changesObj = changerObj.change;
 
-  MenuItem.updateItem(query, changesObj);
+ 
 
   res.send('Update \n');
 });
@@ -47,8 +62,7 @@ app.put('/api/restaurants', (req, res) => {
 app.post('/api/restaurants', (req, res) => {
   var descriptionObj = req.body;
   console.log('Create', descriptionObj);
-  MenuItem.createItem(descriptionObj)
-  .then(menu => res.send('Created ${menu} \n'));
+ 
   
 })
 

@@ -99,10 +99,10 @@ class MenuContainer extends React.Component {
 
     let itemObject = {};
     this.props.items.forEach(item => {
-      if (!itemObject[item.type]) {
-        itemObject[item.type] = [];
+      if (!itemObject[item.type_name]) {
+        itemObject[item.type_name] = [];
       }
-      itemObject[item.type].push(item);
+      itemObject[item.type_name].push(item);
     });    
 
     let key = 0;
