@@ -3,7 +3,7 @@ const Pool = require('pg').Pool;
 
 const pool = new Pool({
     user: dbInfo.userName,
-    host: 'localhost',
+    host: 'http://ec2-3-93-152-7.compute-1.amazonaws.com/',
     database: 'postgres',
     password: dbInfo.password,
     port: dbInfo.port 
@@ -21,7 +21,7 @@ pool.query(
 
 const menudbPool = new Pool({
     user: dbInfo.userName,
-    host: 'localhost',
+    host: 'http://ec2-3-93-152-7.compute-1.amazonaws.com/',
     database: 'menudb',
     password: dbInfo.password,
     port: dbInfo.port 
