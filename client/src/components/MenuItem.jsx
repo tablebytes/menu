@@ -56,8 +56,8 @@ const MenuItem = ({item}) => {
 
   return (
     <div className="itemContainer" style={styles.container}>
-      <div className="itemPrice" style={styles.price}>${price}</div>
-      <div className="itemName">{item.item_name}</div>
+      <div className="itemPrice" style={styles.price}>${item.price}</div>
+      <div className="itemName">{item.item}</div>
       <div className="itemDescription" style={styles.description}>{item.description}</div>
     </div>
   );
