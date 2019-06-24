@@ -110,7 +110,7 @@ class MenuContainer extends React.Component {
     const menuTypeContainers = Object.keys(itemObject).map(type => {
       const lastType = (type === Object.keys(itemObject)[Object.keys(itemObject).length - 1]);
       key++;
-      return <MenuTypeContainer key={key} items={itemObject[type]} itemsType={type} lastType={lastType} />
+      return <MenuTypeContainer key={key} items={itemObject[type]} itemsType={itemObject[type][0].type} lastType={lastType} />
     });
 
     return (

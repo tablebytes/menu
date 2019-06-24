@@ -27,6 +27,7 @@ class Menu extends React.Component {
   getMenus() {
     axios.get(`/api/restaurants/${this.state.restaurantId}/menus`)
     .then(response => {
+      console.log(response)
       this.setState({
         restaurantLoaded: true,
         menus: response.data

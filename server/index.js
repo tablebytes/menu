@@ -6,7 +6,7 @@ const path = require('path');
 const cors = require('cors');
 
 
-const port = 3004;
+const port = 3002;
 const app = express();
 
 app.use(cors());
@@ -19,14 +19,16 @@ app.get('/api/restaurants/:id/menus', (req, res) => {
     if(err) {
       console.log(err);
     }
-    var menuNames= [];
+    var menuNames = [];
+    
     for(var i = 0; i < result.rows.length; i++) {
       menuNames.push(result.rows[i].menu);
     }
-    
+      
     res.send(menuNames);
-  });
-});
+  })
+
+})
 
 app.get('/api/restaurants/:id/menus/:menu', (req, res) => {
 
@@ -34,16 +36,17 @@ app.get('/api/restaurants/:id/menus/:menu', (req, res) => {
    if(err) {
      console.log(err);
    }
-   console.log('RESULT: ', result);
+   console.log(result.rows);
    res.send(result.rows)
  })
-});
+
+})
 
 //delete
 app.delete('/api/restaurants/:id/menus/:menu', (req, res) => {
  
   
-});
+})
 //update
 app.put('/api/restaurants', (req, res) => {
   var changerObj = req.body;
@@ -54,7 +57,7 @@ app.put('/api/restaurants', (req, res) => {
  
 
   res.send('Update \n');
-});
+})
 //create test: curl -X POST http://127.0.0.1:3004/api/restaurants/1/menus/Holiday 
 //-H "Content-Type: application/json" -d 
 //'{"item":"steak fish","description":"yum","menu":"Holiday","type":"Lunch","price":"4.85","restaurantId":"1"}'
@@ -69,7 +72,7 @@ app.post('/api/restaurants', (req, res) => {
 
 const server = app.listen(port, () => {
   console.log(`Now listening on port ${port}`);
-});
+})
 
 
 module.exports = app;

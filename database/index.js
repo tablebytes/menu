@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 //const mongoUri = 'mongodb://database/openTableMenu';
-const mongoUri = 'mongodb://127.0.0.1/openTableMenu';
+const mongoUri = 'mongodb://DATABASE IP FILL ME IN/openTableMenu';
 
 mongoose.connect(mongoUri, { useNewUrlParser: true });
 

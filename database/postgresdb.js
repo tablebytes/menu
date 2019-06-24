@@ -3,7 +3,7 @@ const Pool = require('pg').Pool;
 
 const pool = new Pool({
     user: dbInfo.userName,
-    host: 'http://ec2-3-93-152-7.compute-1.amazonaws.com/',
+    host: '3.209.230.119',
     database: 'postgres',
     password: dbInfo.password,
     port: dbInfo.port 
@@ -14,14 +14,14 @@ pool.query(
     (err) => {
         if(err) {
             //console.log(err);
-        }
+        } 
         console.log('added db');
     }
 )
 
 const menudbPool = new Pool({
     user: dbInfo.userName,
-    host: 'http://ec2-3-93-152-7.compute-1.amazonaws.com/',
+    host: '3.209.230.119',
     database: 'menudb',
     password: dbInfo.password,
     port: dbInfo.port 
@@ -62,6 +62,6 @@ exports.getMenu = (restaurantId, menu, cb) => {
 }
 
 // CREATE INDEX rest_id ON items(restaurantId)
-// \COPY items(_id, restaurantId, item, description, menu, type, price) FROM '/Users/sebastianward/Desktop/HackReactor2/SystemDesignCapstone/menu/data.csv' DELIMITER ',';
+// \COPY items(_id, restaurantId, item, description, menu, type, price) FROM '/home/ec2-user/itemsdata.csv' DELIMITER ',';
 
 exports.pool = pool;
